@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, observable } from "rxjs";
+import { Observable } from "rxjs";
 import { usuarios } from "../models/empresa.model";
 
 @Injectable({
@@ -12,6 +12,10 @@ export class empresaService{
 
 
     constructor(public _http: HttpClient){}
+
+    obtenerEmpresa(): Observable<any>{
+      return this._http.get(this.url+ '/encontrarE',{headers: this.headersVariable})
+    }
 
     agregarEmpresa(modeloEmpresa:usuarios): Observable<any>{
         let parametros = JSON.stringify(modeloEmpresa);
