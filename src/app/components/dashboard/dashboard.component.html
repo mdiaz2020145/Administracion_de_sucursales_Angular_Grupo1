@@ -1,3 +1,7 @@
+<!--Boton-->
+<button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#modalAgregarEmpresa">Agregar</button>
+
+
 <div class="row row-cols-1 row-cols-md-3 g-4 mt-4">
     <div class="col">
         <div class="card naranja-oscuro h-100">
@@ -84,3 +88,40 @@
         </div>
     </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="modalAgregarEmpresa" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Agregar Empresa</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+        <form>
+            <div class="mb-3">
+                <label for="inputNombre" class="form-label">nombre de usuario</label>
+                <input type="text" class="form-control" id="inputusuario" name="usuario" #usuario="ngModel" [(ngModel)]="empresaModelPost.usuario">
+              </div>
+          <div class="mb-3">
+            <label for="inputNombre" class="form-label">nombre de la empresa</label>
+            <input type="text" class="form-control" id="inputNombre" name="nombreEmpresa" #nombreEmpresa="ngModel" [(ngModel)]="empresaModelPost.nombreEmpresa">
+          </div>
+          <div class="mb-3">
+            <label for="inputNombre" class="form-label">Contraseña de la empresa</label>
+           <input type="text" class="form-control" id="inputpassword" name="password" #password="ngModel" [(ngModel)]="empresaModelPost.password">
+          </div>
+          <div class="mb-3">
+            <label for="inputNombre" class="form-label">Tipo empresa</label>
+          <input type="text" class="form-control" id="inputTipoEmpresa" name="tipoEmpresa" #tipoEmpresa="ngModel" [(ngModel)]="empresaModelPost.tipoEmpresa">
+          </div>
+        </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="postEmpresa()">Agregar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
