@@ -4,33 +4,28 @@
             <div class="card naranja-oscuro bordeado">
                 <div class="card-body">
                     <h5 class="card-title text-center text-light fs-2 mb-4">Bienvenido</h5>
-                    <form>
-                        <div class="mb-3 mx-5">
-                            <label for="nombre" class="form-label text-light">Nombre</label>
-                            <input type="text" class="form-control" id="nombre">
+                  <form>
+                      <div class="mb-3">
+                          <label for="inputNombre" class="form-label text-light fs-5">Usuario</label>
+                          <input type="text" class="form-control" id="inputusuario" name="usuario" #usuario="ngModel" [(ngModel)]="empresaModelPost.usuario">
                         </div>
-
-                        <div class="mb-3 mx-5">
-                            <label for="apellido" class="form-label text-light">Apellido</label>
-                            <input type="text" class="form-control" id="apellido">
-                        </div>
-
-                        <div class="mb-3 mx-5">
-                            <label for="exampleInputEmail1" class="form-label text-light">Correo Electronico</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1"
-                                aria-describedby="emailHelp">
-                            <div id="emailHelp" class="form-text text-light">No compartiremos tu correo con nadie mas</div>
-                        </div>
-
-                        <div class="mb-3 mx-5">
-                            <label for="exampleInputPassword1" class="form-label text-light">Contraseña</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1">
-                        </div>
-                        <div class="text-center">
-                            <button type="submit" class="btn btn-primary oscuro mx-2" style="border: none">Guardar</button>
-                            <button type="reset" class="btn btn-primary bg-danger mx-2" style="border: none">Cancelar</button>
-                        </div>
-                    </form>
+                    <div class="mb-3">
+                      <label for="inputNombre" class="form-label text-light fs-5">Nombre De La Empresa</label>
+                      <input type="text" class="form-control" id="inputNombre" name="nombreEmpresa" #nombreEmpresa="ngModel" [(ngModel)]="empresaModelPost.nombreEmpresa">
+                    </div>
+                    <div class="mb-3">
+                      <label for="inputNombre" class="form-label text-light fs-5">Contraseña de La Empresa</label>
+                     <input type="password" class="form-control" id="inputpassword" name="password" #password="ngModel" [(ngModel)]="empresaModelPost.password">
+                    </div>
+                    <div class="mb-3">
+                      <label for="inputNombre" class="form-label text-light fs-5">Tipo Empresa</label>
+                    <input type="text" class="form-control" id="inputTipoEmpresa" name="tipoEmpresa" #tipoEmpresa="ngModel" [(ngModel)]="empresaModelPost.tipoEmpresa">
+                    </div>
+                    <div class="btn-group centrar w-50 p-2" role="group" aria-label="Basic example">
+                      <button type="submit" class="btn btn-primary oscuro mt-3 justify-content-center" style="border: none" (click)="postEmpresa()">Guardar</button>
+                      <button type="reset" class="btn btn-primary bg-danger mt-3 justify-content-center" style="border: none">Cancelar</button>
+                    </div>
+                  </form>
                 </div>
             </div>
         </div>
