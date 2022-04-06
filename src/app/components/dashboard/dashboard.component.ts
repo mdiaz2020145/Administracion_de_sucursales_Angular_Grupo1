@@ -14,9 +14,12 @@ export class DashboardComponent implements OnInit {
   //Empresa
   public empresaModelPost: usuarios;
   public empresaModelGet: usuarios;
+  public empresaModelGetId: usuarios;
 
   constructor(private _empresaService: empresaService) {
       this.empresaModelPost = new usuarios('','','','','','');
+      this.empresaModelGetId = new usuarios('','','','','','');
+
   }
 
   ngOnInit(): void {
@@ -34,6 +37,21 @@ export class DashboardComponent implements OnInit {
     )
   }
 
+  getEmpresaId(idEmpresa){
+    this._empresaService.obtenerEmpresaId(idEmpresa).subscribe(
+      (response)=>{
+        
+        this.empresaModelGetId = response.Empresa;
+        console.log(this.empresaModelGetId);
+        
+      },
+      (error)=>{
+        console.log(<any>error)
+      }
+    )
+
+  }
+
   postEmpresa(){
     this._empresaService.agregarEmpresa(this.empresaModelPost).subscribe(
       (response)=>{
@@ -42,6 +60,30 @@ export class DashboardComponent implements OnInit {
       },
       (error)=>{
         console.log(<any>error);
+      }
+    )
+  }
+
+  deleteEmpresa(idEmpresa){
+    this._empresaService.eliminarEmpresa(idEmpresa).subscribe(
+      (response)=>{
+        console.log(response);
+        this.getEmpresa();
+      },
+      (error)=>{
+        console.log(error);
+      }
+    )
+  }
+
+  putEmpresa(){
+    this._empresaService.editarEmpresa(this.empresaModelGetId).subscribe(
+      (response)=>{
+        console.log(response);
+        this.getEmpresa();
+      },
+      (error)=>{
+        console.log(error);
       }
     )
   }

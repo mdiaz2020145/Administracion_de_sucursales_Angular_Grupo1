@@ -14,9 +14,11 @@
             <h6 class="card-title color-texto">Nombre de usuario:  {{emp.usuario}}</h6>
             <h6 class="card-title color-texto">Tipo de empresa:  {{emp.tipoEmpresa}}</h6>
             <div class="btn-group justify-content-center mx-auto" role="group" aria-label="Basic example">
-              <button type="button" class="btn btn-danger">Eliminar</button>
-              <button type="button" class="btn btn-primary">Ingresar</button>
-              <button type="button" class="btn btn-warning color-texto">Editar</button>
+              <button type="button" class="btn btn-danger" (click)="deleteEmpresa(emp._id)">Eliminar</button>
+              <button class="btn btn-warning" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample"
+                (click)="getEmpresaId(emp._id)">
+                Editar
+              </button>
             </div>
           </div>
         </div>
@@ -59,3 +61,32 @@
       </div>
     </div>
   </div>
+
+<!---OffCanvas Editar Empresas-->
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasExampleLabel">Editar Empresa</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <form>
+      <div class="mb-3">
+        <label for="inputUsuario" class="from-label">usuario</label>
+        <input type="text" class="form-control" id="inputUsuario" name="usuario"  #usuario="ngModel"  [(ngModel)]="empresaModelGetId.usuario">
+      </div>
+      <div class="mb-3">
+        <label for="inputNombreEmpresa" class="from-label">Nombre empresa</label>
+       <input type="text" class="form-control" id="inputNombreEmpresa" name="nombreEmpresa" #nombreEmpresa="ngModel" [(ngModel)]="empresaModelGetId.nombreEmpresa">
+      </div>
+     <div class="mb-3">
+       <label for="inputTipoempresa" class="from-label">Tipo Empresa</label> 
+       <input type="text" class="form-control" id="inputTipoempresa" name="tipoEmpresa"  #tipoEmpresa="ngModel" [(ngModel)]="empresaModelGetId.tipoEmpresa">
+      </div>
+     <!-- <div class="mb-3">
+        <label for="inputPassword" class="from-label">password</label> 
+        <input type="text" class="form-control" id="inputPassword" name="password"  #password="ngModel" [(ngModel)]="empresaModelGetId.password">
+       </div>-->
+      <button class="btn btn-success" data-bs-dismiss="offcanvas" (click)="putEmpresa()">Editar Empresa</button>
+    </form>
+  </div>
+</div>
