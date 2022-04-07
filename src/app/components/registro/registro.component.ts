@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { usuarios } from 'src/app/models/empresa.model';
+import { Empresas } from 'src/app/models/empresa.model';
 import { empresaService } from 'src/app/services/empresa.service';
 
 @Component({
@@ -11,10 +11,18 @@ import { empresaService } from 'src/app/services/empresa.service';
 })
 export class RegistroComponent implements OnInit {
 
-  public empresaModelPost: usuarios;
+  tipo=[
+    {nombre: "Restaurante",},
+    {nombre:"Construccion"},
+    {nombre:"Colegio"},
+    {nombre:"Tecnologica"},
+    {nombre: "Alimentos"}
+  ]
+
+  public empresaModelPost: Empresas;
 
   constructor(private _empresaService: empresaService, private _router: Router) {
-      this.empresaModelPost = new usuarios('','','','','','');
+      this.empresaModelPost = new Empresas('','','','','','');
   }
 
   ngOnInit(): void {

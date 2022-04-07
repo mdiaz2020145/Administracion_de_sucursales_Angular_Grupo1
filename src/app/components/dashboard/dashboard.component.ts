@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { usuarios } from 'src/app/models/empresa.model';
+import { Empresas } from 'src/app/models/empresa.model';
 import { empresaService } from 'src/app/services/empresa.service';
 
 
@@ -11,15 +11,24 @@ import { empresaService } from 'src/app/services/empresa.service';
 })
 export class DashboardComponent implements OnInit {
 
+  tipo=[
+    {nombre: "Restaurante",},
+    {nombre:"Construccion"},
+    {nombre:"Colegio"},
+    {nombre:"Tecnologica"},
+    {nombre: "Alimentos"}
+  ]
   //Empresa
-  public empresaModelPost: usuarios;
-  public empresaModelGet: usuarios;
-  public empresaModelGetId: usuarios;
+  public empresaModelPost: Empresas;
+  public empresaModelGet: Empresas;
+  public empresaModelGetId: Empresas;
+  public token;
+  public validation: Boolean=true;
 
   constructor(private _empresaService: empresaService) {
-      this.empresaModelPost = new usuarios('','','','','','');
-      this.empresaModelGetId = new usuarios('','','','','','');
-
+      this.empresaModelPost = new Empresas('','','','','','');
+      this.empresaModelGetId = new Empresas('','','','','','');
+      this.token=_empresaService.obtenerToken();
   }
 
   ngOnInit(): void {
@@ -27,10 +36,16 @@ export class DashboardComponent implements OnInit {
   }
 
   getEmpresa(){
-    this._empresaService.obtenerEmpresa().subscribe(
+    this._empresaService.obtenerEmpresa(this.token).subscribe(
       (response)=>{
+
         console.log(response)
-        this.empresaModelGet =response.empresa;
+        if(response.empresa==0){
+          this.validation=false;
+        }else{
+          this.validation=true;
+          this.empresaModelGet =response.empresa;
+        }
         console.log(this.empresaModelGet)
       },
       (error)=>{ console.log(<any>error)}
@@ -38,12 +53,16 @@ export class DashboardComponent implements OnInit {
   }
 
   getEmpresaId(idEmpresa){
-    this._empresaService.obtenerEmpresaId(idEmpresa).subscribe(
+    this._empresaService.obtenerEmpresaId(idEmpresa, this.token).subscribe(
       (response)=>{
-        
-        this.empresaModelGetId = response.Empresa;
+        if(response.empresa==0){
+          this.validation=false;
+        }else{
+          this.validation=true;
+          this.empresaModelGetId = response.Empresa;
+        }
         console.log(this.empresaModelGetId);
-        
+
       },
       (error)=>{
         console.log(<any>error)
@@ -65,10 +84,16 @@ export class DashboardComponent implements OnInit {
   }
 
   deleteEmpresa(idEmpresa){
-    this._empresaService.eliminarEmpresa(idEmpresa).subscribe(
+    this._empresaService.eliminarEmpresa(idEmpresa, this.token).subscribe(
       (response)=>{
         console.log(response);
-        this.getEmpresa();
+        if(response.empresa==0){
+          this.validation=false;
+        }else{
+          this.validation=true;
+          this.getEmpresa();
+        }
+
       },
       (error)=>{
         console.log(error);
@@ -77,10 +102,15 @@ export class DashboardComponent implements OnInit {
   }
 
   putEmpresa(){
-    this._empresaService.editarEmpresa(this.empresaModelGetId).subscribe(
+    this._empresaService.editarEmpresa(this.empresaModelGetId, this.token).subscribe(
       (response)=>{
         console.log(response);
-        this.getEmpresa();
+        if(response.empresa==0){
+          this.validation=false;
+        }else{
+          this.validation=true;
+          this.getEmpresa();
+        }
       },
       (error)=>{
         console.log(error);

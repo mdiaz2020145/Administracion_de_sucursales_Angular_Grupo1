@@ -1,28 +1,37 @@
 <!--Boton-->
-<div class="container mt-4 ml-3">
+<div class="container mt-4 ml-3" *ngIf="validation==true">
   <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#modalAgregarEmpresa">Agregar Empresa</button>
 </div>
 
 <!-- card-listar -->
 <div class="container">
-  <div class="row" >
+  <div class="row" *ngIf="validation==true">
       <div class="col-12 col-md-4 mt-4" *ngFor="let emp of empresaModelGet">
-        <div class="card naranja-oscuro h-100" style="width: 18rem;">
-          <img src="../../../assets/empresa-general.jpeg" class="card-img-top" alt="empresa-logo">
-          <div class="card-body">
-            <h4 class="card-title color-texto text-center">{{emp.nombreEmpresa}}</h4>
-            <h6 class="card-title color-texto">Nombre de usuario:  {{emp.usuario}}</h6>
-            <h6 class="card-title color-texto">Tipo de empresa:  {{emp.tipoEmpresa}}</h6>
-            <div class="btn-group justify-content-center mx-auto" role="group" aria-label="Basic example">
-              <button type="button" class="btn btn-danger" (click)="deleteEmpresa(emp._id)">Eliminar</button>
-              <button class="btn btn-warning" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample"
-                (click)="getEmpresaId(emp._id)">
-                Editar
-              </button>
+        <ng-container>
+          <div class="card naranja-oscuro h-90 my-3" style="width: 18rem;">
+            <img src="../../../assets/empresa-general.jpeg" class="card-img-top" alt="empresa-logo">
+            <div class="card-body">
+              <h4 class="card-title color-texto text-center">{{emp.nombreEmpresa}}</h4>
+              <h6 class="card-title color-texto">Nombre de usuario:  {{emp.usuario}}</h6>
+              <h6 class="card-title color-texto">Tipo de empresa:  {{emp.tipoEmpresa}}</h6>
+              <div class="btn-group" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-danger" (click)="deleteEmpresa(emp._id)">Eliminar</button>
+                <button class="btn btn-warning" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample"
+                  (click)="getEmpresaId(emp._id)">
+                  Editar
+                </button>
+              </div>
             </div>
           </div>
-        </div>
+        </ng-container>
       </div>
+  </div>
+  <div class="row justify-content-center align-items-center" style="height: 90vh" *ngIf="validation==false">
+    <div class="alert alert-danger text-center" role="alert">
+      <h4 class="alert-heading">Lo sentimos</h4>
+      <p>No tienes los permisos necesarios para visualizar las demas empresas</p>
+      <hr>
+    </div>
   </div>
 </div>
 
@@ -49,14 +58,20 @@
            <input type="password" class="form-control" id="inputpassword" name="password" #password="ngModel" [(ngModel)]="empresaModelPost.password">
           </div>
           <div class="mb-3">
-            <label for="inputNombre" class="form-label">Tipo empresa</label>
-          <input type="text" class="form-control" id="inputTipoEmpresa" name="tipoEmpresa" #tipoEmpresa="ngModel" [(ngModel)]="empresaModelPost.tipoEmpresa">
+            <label for="inputTipoEmpresa" class="form-label text-light fs-5">Tipo Empresa</label>
+            <select class="form-select" aria-label="Default select example" id="inputTipoEmpresa" name="tipoEmpresa"
+              #tipoEmpresa="ngModel" [(ngModel)]="empresaModelPost.tipoEmpresa">
+              <!-- <option selected="true" disabled="disabled">Elije el tipo de empresa que seas</option> -->
+              <ng-container *ngFor="let tipo of tipo">
+                <option [value]="tipo.nombre">{{tipo.nombre}}</option>
+              </ng-container>
+            </select>
           </div>
         </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" (click)="postEmpresa()">Agregar</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="postEmpresa()">Agregar</button>
         </div>
       </div>
     </div>
@@ -79,11 +94,11 @@
        <input type="text" class="form-control" id="inputNombreEmpresa" name="nombreEmpresa" #nombreEmpresa="ngModel" [(ngModel)]="empresaModelGetId.nombreEmpresa">
       </div>
      <div class="mb-3">
-       <label for="inputTipoempresa" class="from-label">Tipo Empresa</label> 
+       <label for="inputTipoempresa" class="from-label">Tipo Empresa</label>
        <input type="text" class="form-control" id="inputTipoempresa" name="tipoEmpresa"  #tipoEmpresa="ngModel" [(ngModel)]="empresaModelGetId.tipoEmpresa">
       </div>
      <!-- <div class="mb-3">
-        <label for="inputPassword" class="from-label">password</label> 
+        <label for="inputPassword" class="from-label">password</label>
         <input type="text" class="form-control" id="inputPassword" name="password"  #password="ngModel" [(ngModel)]="empresaModelGetId.password">
        </div>-->
       <button class="btn btn-success" data-bs-dismiss="offcanvas" (click)="putEmpresa()">Editar Empresa</button>

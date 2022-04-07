@@ -1,40 +1,74 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from "rxjs";
-import { usuarios } from "../models/empresa.model";
+import { Empresas } from "../models/empresa.model";
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
-export class empresaService{
-    public url: String = 'http://localhost:3000/api';
-    public headersVariable = new HttpHeaders().set('Content-Type','application/json')
+export class empresaService {
+  public url: String = 'http://localhost:3000/api';
+  public headersVariable = new HttpHeaders().set('Content-Type', 'application/json')
+  public token;
+  public identidad;
 
 
-    constructor(public _http: HttpClient){}
+  constructor(public _http: HttpClient) { }
 
-    obtenerEmpresa(): Observable<any>{
-      return this._http.get(this.url+ '/encontrarE',{headers: this.headersVariable})
+  obtenerEmpresa(token): Observable<any> {
+    let headersToken=this.headersVariable.set('Authorization', token)
+    return this._http.get(this.url + '/encontrarE', { headers: headersToken })
+  }
+
+  obtenerEmpresaId(id: String, token): Observable<any> {
+    let headersToken=this.headersVariable.set('Authorization', token)
+    return this._http.get(this.url + '/encontrarEId/' + id, { headers: headersToken })
+  }
+
+  agregarEmpresa(modeloEmpresa: Empresas): Observable<any> {
+    let parametros = JSON.stringify(modeloEmpresa);
+
+    return this._http.post(this.url + '/registrar', parametros, { headers: this.headersVariable })
+  }
+
+  eliminarEmpresa(id: String, token): Observable<any> {
+    let headersToken=this.headersVariable.set('Authorization', token)
+    return this._http.delete(this.url + '/eliminarE/' + id, { headers: headersToken})
+  }
+
+  editarEmpresa(modeloEmpresa: Empresas,token): Observable<any> {
+    let parametros = JSON.stringify(modeloEmpresa);
+    let headersToken=this.headersVariable.set('Authorization', token)
+    return this._http.put(this.url + '/editarE/' + modeloEmpresa._id, parametros, { headers: headersToken });
+  }
+
+  login(empresas, obtenerToken=null): Observable<any> {
+    if(obtenerToken != null){
+      empresas.obtenerToken=obtenerToken;
+    }
+    let params=JSON.stringify(empresas);
+    return this._http.post(this.url+'/login', params, {headers: this.headersVariable})
+  }
+
+  obtenerToken(){
+    var token2=localStorage.getItem('token');
+    if(token2!=undefined){
+      this.token=token2;
+    }else{
+      this.token='';
     }
 
-    obtenerEmpresaId(id:String):Observable<any>{
-        return this._http.get(this.url + '/encontrarEId/'+ id,{headers: this.headersVariable})
+    return this.token;
+  }
+
+  obtenerIdentidad(){
+    var identidad2=JSON.parse(localStorage.getItem('identidad'));
+    if(identidad2!=undefined){
+      this.identidad=identidad2;
+    }else if(identidad2==undefined){
+      this.identidad=null;
     }
 
-    agregarEmpresa(modeloEmpresa:usuarios): Observable<any>{
-        let parametros = JSON.stringify(modeloEmpresa);
-
-        return this._http.post(this.url + '/registrar', parametros, {headers: this.headersVariable})
-    }
-
-    eliminarEmpresa(id:String):Observable<any>{
-
-        return this._http.delete(this.url + '/eliminarE/' + id,{headers:this.headersVariable})
-    }
-
-    editarEmpresa(modeloEmpresa: usuarios):Observable<any>{
-        let parametros = JSON.stringify(modeloEmpresa);
-
-        return this._http.put(this.url + '/editarE/' +modeloEmpresa._id, parametros,{headers:this.headersVariable});
-    }
+    return this.identidad;
+  }
 }

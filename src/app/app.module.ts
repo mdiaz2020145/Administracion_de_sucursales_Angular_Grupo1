@@ -10,6 +10,7 @@ import { InicioComponent } from './components/inicio/inicio.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { SucursalesComponent } from './components/sucursales/sucursales.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { FormsModule } from '@angular/forms';
     NavbarComponent,
     RegistroComponent,
     InicioComponent,
-    DashboardComponent
+    DashboardComponent,
+    SucursalesComponent
   ],
   imports: [
     BrowserModule,

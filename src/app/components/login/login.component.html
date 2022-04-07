@@ -7,18 +7,20 @@
                     <form>
                         <div class="mb-3 mx-5">
                             <label for="exampleInputEmail1" class="form-label text-light">Correo Electronico</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1">
+                            <input type="email" class="form-control" id="exampleInputEmail1" name="usuario" #usuario="ngModel"
+                            [(ngModel)]="loginEmpresa.usuario">
                         </div>
                         <div class="mb-3 mx-5">
                             <label for="exampleInputPassword1" class="form-label text-light">Contraseña</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1">
+                            <input type="password" class="form-control" id="exampleInputPassword1" name="password" #password="ngModel"
+                            [(ngModel)]="loginEmpresa.password">
                         </div>
                         <div class="mb-3 mx-5 form-check">
                             <input type="checkbox" class="form-check-input " id="exampleCheck1">
                             <label class="form-check-label text-light" for="exampleCheck1">Mantener la sesion iniciada</label>
                         </div>
                         <div class="text-center">
-                            <button type="submit" class="btn btn-primary oscuro" style="border:none" routerLink="/dashboard">Iniciar Sesion</button>
+                            <button type="submit" class="btn btn-primary oscuro" style="border:none" (click)="login()">Iniciar Sesion</button>
                         </div>
                     </form>
                 </div>
