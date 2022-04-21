@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { SucursalesComponent } from './components/sucursales/sucursales.component';
 import { EmpresaProductoComponent } from './components/empresa-producto/empresa-producto.component';
+import { SucursalProductoComponent } from './components/sucursal-producto/sucursal-producto.component';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { EmpresaProductoComponent } from './components/empresa-producto/empresa-
     DashboardComponent,
     SucursalesComponent,
     EmpresaProductoComponent,
+    SucursalProductoComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { EmpresaProducto } from 'src/app/services/empresa-producto.service';
 import { empresaService } from 'src/app/services/empresa.service';
+import { SucursalProducto } from 'src/app/models/sucursal-producto.model';
+
 
 @Component({
   selector: 'app-empresa-producto',
@@ -10,6 +12,7 @@ import { empresaService } from 'src/app/services/empresa.service';
 })
 export class EmpresaProductoComponent implements OnInit {
 public empresaProductoModelGet: EmpresaProducto;
+public sucursalProductoModelGet:SucursalProducto;
 public token;
 public validation: Boolean=true;
 
@@ -36,4 +39,7 @@ public validation: Boolean=true;
     )
 
   }
+
+
+
 }
