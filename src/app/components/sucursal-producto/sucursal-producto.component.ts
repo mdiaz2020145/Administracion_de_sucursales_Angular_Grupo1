@@ -28,7 +28,7 @@ export class SucursalProductoComponent implements OnInit {
           this.validation=false;
         }else{
           this.validation=true;
-          this.sucursalProductoModelGetId =response.Productos;
+          this.sucursalProductoModelGetId =response.ProductosSucursal;
         }
         console.log(response)
         
