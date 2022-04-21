@@ -25,7 +25,7 @@ export class DashboardComponent implements OnInit {
   public token;
   public validation: Boolean=true;
 
-  constructor(private _empresaService: empresaService) {
+  constructor(public _empresaService: empresaService) {
       this.empresaModelPost = new Empresas('','','','','','');
       this.empresaModelGetId = new Empresas('','','','','','');
       this.token=_empresaService.obtenerToken();

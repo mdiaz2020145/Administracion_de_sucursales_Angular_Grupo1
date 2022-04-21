@@ -1,6 +1,6 @@
 <!--Boton-->
-<div class="container mt-4 ml-3" *ngIf="validation==true">
-  <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#modalAgregarEmpresa">Agregar Empresa</button>
+<div class="container mt-4 ml-3">
+  <button class="btn btn-primary "type="button" data-bs-toggle="modal" data-bs-target="#modalAgregarEmpresa ">Agregar Empresa</button>
 </div>
 
 <!-- card-listar -->
@@ -26,7 +26,7 @@
         </ng-container>
       </div>
   </div>
-  <div class="row justify-content-center align-items-center" style="height: 90vh" *ngIf="validation==false">
+  <div class="row justify-content-center align-items-center" style="height: 90vh" *ngIf="_empresaService.obtenerIdentidad().rol === 'EMPRESA'">
     <div class="alert alert-danger text-center" role="alert">
       <h4 class="alert-heading">Lo sentimos</h4>
       <p>No tienes los permisos necesarios para visualizar las demas empresas</p>

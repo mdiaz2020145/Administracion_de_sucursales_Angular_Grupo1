@@ -11,6 +11,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { SucursalesComponent } from './components/sucursales/sucursales.component';
+import { EmpresaProductoComponent } from './components/empresa-producto/empresa-producto.component';
+
 
 @NgModule({
   declarations: [
@@ -20,7 +22,8 @@ import { SucursalesComponent } from './components/sucursales/sucursales.componen
     RegistroComponent,
     InicioComponent,
     DashboardComponent,
-    SucursalesComponent
+    SucursalesComponent,
+    EmpresaProductoComponent,
   ],
   imports: [
     BrowserModule,
