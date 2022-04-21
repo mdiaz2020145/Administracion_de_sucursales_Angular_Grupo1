@@ -1,10 +1,10 @@
 export class SucursalProducto{
     constructor(
-        _id:String, 
-        idSucursal:String,
-        nombreProducto: String,
-        cantidadProducto: Number,
-        vendido: Number,
-        precio: Number,
+    public _id:String, 
+    public idSucursal:String,
+    public  nombreProducto: String,
+    public cantidadProducto: Number,
+    public  vendido: Number,
+    public  precio: Number,
     ){}
 }
