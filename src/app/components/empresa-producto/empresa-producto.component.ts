@@ -12,11 +12,12 @@ import { SucursalProducto } from 'src/app/models/sucursal-producto.model';
 })
 export class EmpresaProductoComponent implements OnInit {
 public empresaProductoModelGet: EmpresaProducto;
-public sucursalProductoModelGet:SucursalProducto;
+public sucursalProductoModelPost:SucursalProducto;
 public token;
 public validation: Boolean=true;
 
   constructor(public _empresaProducto:EmpresaProducto,public _empresaService: empresaService) {
+    this.sucursalProductoModelPost = new SucursalProducto('','','','',0,0,0);
     this.token=_empresaService.obtenerToken();
   }
 
@@ -40,6 +41,21 @@ public validation: Boolean=true;
 
   }
 
+  postProductos(){
+    this._empresaProducto.enviarProductoSucursal(this.sucursalProductoModelPost,this.token).subscribe(
+      (response)=>{
+        if(response.empresa==0){
+          this.validation=false;
+        }else{
+          this.validation=true;
+          this.getProductos();
+        }
+      },
+      (error)=>{
+        console.log(<any>error);
+      }
+    )
+  }
 
 
 }

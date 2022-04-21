@@ -1,3 +1,8 @@
+<!--Boton-->
+<div class="container mt-4 ml-3">
+  <button class="btn btn-primary "type="button" data-bs-toggle="modal" data-bs-target="#enviar">Agregar Empresa</button>
+</div>
+
 <div class="container">
     <div class="row">
         <div class="col-12 col-md-4 mt-4" *ngFor="let ePro of empresaProductoModelGet">
@@ -21,3 +26,34 @@
         </div>
     </div>
 
+<!-- Modal -->
+<div class="modal fade" id="enviar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Agregar Empresa</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <form>
+          <div class="mb-3">
+              <label for="inputnombreProducto" class="form-label">nombre del producto</label>
+              <input type="text" class="form-control" id="inputnombreProducto" name="nombreProducto" #nombreProducto="ngModel" [(ngModel)]="sucursalProductoModelPost.nombreProducto">
+            </div>
+        <div class="mb-3">
+          <label for="inputcantidadProducto" class="form-label">cantidad del producto</label>
+          <input type="text" class="form-control" id="inputcantidadProducto" name="cantidadProducto" #cantidadProducto="ngModel" [(ngModel)]="sucursalProductoModelPost.cantidadProducto">
+        </div>
+        <div class="mb-3">
+          <label for="inputsucursal" class="form-label">Sucursal</label>
+         <input type="text" class="form-control" id="inputsucursal" name="sucursal" #sucursal="ngModel" [(ngModel)]="sucursalProductoModelPost.sucursal">
+        </div>
+      </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="postProductos()">Agregar</button>
+      </div>
+    </div>
+  </div>
+</div>
