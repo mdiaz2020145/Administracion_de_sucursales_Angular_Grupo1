@@ -13,7 +13,7 @@ public empresaProductoModelGet: EmpresaProducto;
 public token;
 public validation: Boolean=true;
 
-  constructor(public _empresaProducto:EmpresaProducto,public _empresaService: empresaService) { 
+  constructor(public _empresaProducto:EmpresaProducto,public _empresaService: empresaService) {
     this.token=_empresaService.obtenerToken();
   }
 
@@ -28,7 +28,7 @@ public validation: Boolean=true;
           this.validation=false;
         }else{
           this.validation=true;
-          this.empresaProductoModelGet =response.EmpresaProducto;
+          this.empresaProductoModelGet =response.Productos;
         }
         console.log(response)
       },
