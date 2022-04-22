@@ -17,6 +17,6 @@ public headersVariable = new HttpHeaders().set('Content-Type', 'application/json
     let headersToken=this.headersVariable.set('Authorization', token)
     return this._http.get(this.url + '/obtenerProductosSucursal/'+id, { headers: headersToken })
   }
-    
+
 
 }

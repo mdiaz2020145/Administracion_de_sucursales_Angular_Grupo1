@@ -1,6 +1,6 @@
 export class SucursalProducto{
     constructor(
-    public _id:String, 
+    public _id:String,
     public idSucursal:String,
     public sucursal:String,
     public  nombreProducto: String,

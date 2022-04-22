@@ -12,7 +12,7 @@
                 <button class="btn btn-warning" type="button">
                   Editar
                 </button>
-                <button type="button" class="nav-link text-light btn btn-primary" routerLink="/sucursalProducto" routerLinkActive="active"(click)="getSucursalId(sucu._id)">Ver Productos</button>
+                <button type="button" class="nav-link text-light btn btn-primary" [routerLink]="['/sucursalProducto', sucu._id]">Ver Productos</button>
               </div>
             </div>
           </div>

@@ -54,7 +54,7 @@ export class SucursalesComponent implements OnInit {
           this.sucursalProductoModelGetId =response.Productos;
         }
         console.log(response)
-        
+
       },
       (error)=>{
         console.log(<any>error);

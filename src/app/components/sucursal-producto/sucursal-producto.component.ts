@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { SucursalProducto } from 'src/app/models/sucursal-producto.model';
 import { SucursalProductoService } from 'src/app/services/empresa-sucursal.service';
 import { empresaService } from 'src/app/services/empresa.service';
@@ -6,21 +7,25 @@ import { empresaService } from 'src/app/services/empresa.service';
 @Component({
   selector: 'app-sucursal-producto',
   templateUrl: './sucursal-producto.component.html',
-  styleUrls: ['./sucursal-producto.component.scss']
+  styleUrls: ['./sucursal-producto.component.scss'],
+  providers: [empresaService, SucursalProductoService]
 })
 export class SucursalProductoComponent implements OnInit {
-  public sucursalProductoModelGetId: SucursalProducto;
+  public sucursalProductoModelGetId=[];
   public token;
   public validation: Boolean=true;
 
-  constructor(public _sucursalProducto:SucursalProductoService,public _empresaService: empresaService) {
-    this.sucursalProductoModelGetId = new SucursalProducto('','','','',0,0,0);
+  constructor(public _sucursalProducto:SucursalProductoService,public _empresaService: empresaService, public _activatedRoute: ActivatedRoute) {
+    //this.sucursalProductoModelGetId = new SucursalProducto('','','','',0,0,0);
     this.token=_empresaService.obtenerToken();
    }
 
   ngOnInit(): void {
+    this._activatedRoute.paramMap.subscribe((dataRuta) => {
+      this.getSucursalId(dataRuta.get('idSucursal'))
+    })
   }
-  
+
   getSucursalId(idSucursal){
     this._sucursalProducto.obtenerProductoSucursal(idSucursal,this.token).subscribe(
       (response)=>{
@@ -30,8 +35,8 @@ export class SucursalProductoComponent implements OnInit {
           this.validation=true;
           this.sucursalProductoModelGetId =response.ProductosSucursal;
         }
-        console.log(response)
-        
+        console.log(response.ProductosSucursal);
+
       },
       (error)=>{
         console.log(<any>error);

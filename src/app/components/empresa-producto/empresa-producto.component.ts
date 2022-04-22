@@ -44,12 +44,7 @@ public validation: Boolean=true;
   postProductos(){
     this._empresaProducto.enviarProductoSucursal(this.sucursalProductoModelPost,this.token).subscribe(
       (response)=>{
-        if(response.empresa==0){
-          this.validation=false;
-        }else{
-          this.validation=true;
           this.getProductos();
-        }
       },
       (error)=>{
         console.log(<any>error);
