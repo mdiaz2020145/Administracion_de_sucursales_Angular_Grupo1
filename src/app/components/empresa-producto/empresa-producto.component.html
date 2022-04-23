@@ -1,6 +1,10 @@
 <!--Boton-->
 <div class="container mt-4 ml-3">
-  <button class="btn btn-primary "type="button" data-bs-toggle="modal" data-bs-target="#enviar">Enviar Productos</button>
+  <button class="btn btn-primary "type="button" data-bs-toggle="modal" data-bs-target="#agregar">Agregar productos</button>
+</div>
+
+<div class="container mt-4 ml-3">
+  <button class="btn btn-secondary "type="button" data-bs-toggle="modal" data-bs-target="#enviar">Enviar producto a empresa</button>
 </div>
 
 <div class="container">
@@ -11,12 +15,13 @@
               <img src="../../../assets/empresa-general.jpeg" class="card-img-top" alt="empresa-logo">
               <div class="card-body">
                 <h4 class="card-title color-texto text-center">{{ePro.nombreProducto}}</h4>
-                <h6 class="card-title color-texto">Nombre del proveedor:{{ePro.nombreProveedor}}</h6>
-                <h6 class="card-title color-texto">cantidad:{{ePro.cantidad}}</h6>
-                <h6 class="card-title color-texto">Precio:{{ePro.precio}}</h6>
+                <h6 class="card-title color-texto">Nombre del proveedor: {{ePro.nombreProveedor}}</h6>
+                <h6 class="card-title color-texto">cantidad: {{ePro.cantidad}}</h6>
+                <h6 class="card-title color-texto">Precio: {{ePro.precio}}</h6>
                 <div class="btn-group" role="group" aria-label="Basic example">
-                  <button type="button" class="btn btn-danger">Eliminar</button>
-                  <button class="btn btn-warning" type="button">
+                  <button type="button" class="btn btn-danger" (click)="deleteProducto(ePro._id)">Eliminar</button>
+                  <button class="btn btn-warning" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample"
+                  (click)="getProductosId(ePro._id)">
                     Editar
                   </button>
                 </div>
@@ -26,7 +31,7 @@
         </div>
     </div>
 
-<!-- Modal -->
+<!-- Modal enviar producto -->
 <div class="modal fade" id="enviar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -52,8 +57,77 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="postProductos()">Agregar</button>
+      <button type="button" class="btn btn-success" data-bs-dismiss="modal" (click)="postProductos()">Agregar</button>
       </div>
     </div>
+  </div>
+</div>
+
+<!-- Modal agregar producto -->
+<div class="modal fade" id="agregar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Envio de Productos hacia Sucursales</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <form>
+          <div class="mb-3">
+              <label for="inputnombreProducto" class="form-label">nombre del producto</label>
+              <input type="text" class="form-control" id="inputnombreProducto" name="nombreProducto" #nombreProducto="ngModel" [(ngModel)]="empresaProductoModelPost.nombreProducto">
+            </div>
+        <div class="mb-3">
+          <label for="inputporveedor" class="form-label">nombre del proveedor</label>
+         <input type="text" class="form-control" id="inputporveedor" name="proveedor" #proveedor="ngModel" [(ngModel)]="empresaProductoModelPost.nombreProveedor">
+        </div>
+        <div class="mb-3">
+          <label for="inputcantidadProducto" class="form-label">cantidad del producto</label>
+          <input type="text" class="form-control" id="inputcantidadProducto" name="cantidadProducto" #cantidadProducto="ngModel" [(ngModel)]="empresaProductoModelPost.cantidad">
+        </div>
+        <div class="mb-3">
+          <label for="inputPrecio" class="form-label">precio del producto</label>
+          <input type="text" class="form-control" id="inputPrecio" name="precio" #precio="ngModel" [(ngModel)]="empresaProductoModelPost.precio">
+        </div>
+      </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-success" data-bs-dismiss="modal" (click)="postAgregarProducto()">Agregar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!---OffCanvas Editar productos-->
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasExampleLabel">Editar Productos</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <form>
+      <div class="mb-3">
+        <label for="inputnombreProducto" class="from-label">Nombre del producto</label>
+        <input type="text" class="form-control" id="inputnombreProducto" name="nombreProducto"  #nombreProducto="ngModel"  [(ngModel)]="empresaProductoModelGetId.nombreProducto">
+      </div>
+      <div class="mb-3">
+        <label for="inputProveedor" class="from-label">Nombre del proveedor</label>
+       <input type="text" class="form-control" id="inputProveedor" name="proveedor" #nombreProveedor="ngModel" [(ngModel)]="empresaProductoModelGetId.nombreProveedor">
+      </div>
+     <div class="mb-3">
+       <label for="inputCantidad" class="from-label">Cantidad</label>
+       <input type="text" class="form-control" id="inputCantidad" name="cantidad"  #cantidad="ngModel" [(ngModel)]="empresaProductoModelGetId.cantidad">
+      </div>
+      <div class="mb-3">
+        <label for="inputPrecio" class="from-label">Precio</label>
+        <input type="text" class="form-control" id="inputPrecio" name="precio"  #precio="ngModel" [(ngModel)]="empresaProductoModelGetId.precio">
+       </div>
+     <!-- <div class="mb-3">
+        <label for="inputPassword" class="from-label">password</label>
+        <input type="text" class="form-control" id="inputPassword" name="password"  #password="ngModel" [(ngModel)]="empresaModelGetId.password">
+       </div>-->
+      <button class="btn btn-success" data-bs-dismiss="offcanvas" (click)="putProductos()">Editar Producto</button>
+    </form>
   </div>
 </div>
