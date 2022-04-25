@@ -1,6 +1,6 @@
 <!--Boton-->
 <div class="container mt-4 ml-3">
-  <button class="btn btn-primary "type="button" data-bs-toggle="modal" data-bs-target="#modalAgregarEmpresa ">Agregar Empresa</button>
+  <button class="btn btn-primary "type="button" data-bs-toggle="modal" data-bs-target="#modalAgregarEmpresa " *ngIf="_empresaService.obtenerIdentidad().rol === 'ADMIN'">Agregar Empresa</button>
 </div>
 
 <!-- card-listar -->
