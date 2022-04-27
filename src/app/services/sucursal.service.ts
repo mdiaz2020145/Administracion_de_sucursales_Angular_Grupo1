@@ -16,6 +16,11 @@ export class SucursalService {
     return this._http.get(this.url + '/obtenerSucursales', { headers: headersToken })
   }
 
+  obtenerSucursalEmpresa(idEmpresa: String, token): Observable<any> {
+    let headersToken=this.headersVariable.set('Authorization', token)
+    return this._http.get(this.url + '/obtenerSucursalesPorEmpresa/'+idEmpresa, { headers: headersToken })
+  }
+
   obtenerProductoSucursal(id: String,token):Observable<any>{
     let headersToken=this.headersVariable.set('Authorization', token)
     return this._http.get(this.url + '/obtenerProductosSucursal/'+id, { headers: headersToken })

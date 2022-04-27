@@ -1,35 +1,54 @@
 <div *ngIf="_empresaService.obtenerIdentidad().rol === 'ADMIN'">
-     <div class="container">
-            <label for="inputEmpresa" class="form-label text-light fs-5">¿Empresa que desea ver sus surcusales?</label>
-            <select class="form-select" aria-label="Default select example" id="inputEmpresa" name="empresa"
-              #empresa="ngModel" [(ngModel)]="empresaTotal">
-
-              <ng-container *ngFor="let tipo of this.getObtenerEmpresa()">
-                <option [value]="tipo.nombreEmpresa">{{tipo.nombreEmpresa}}</option>
-              </ng-container>
-            </select>
-
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-5 mt-4 text-center">
+        <label for="inputEmpresa" class="form-label text-light  fs-5">¿Empresa que desea ver sus surcusales?</label>
+        <select class="form-select" aria-label="Default select example" id="inputEmpresa" name="empresa" #empresa="ngModel"
+          [(ngModel)]="empresaModelGet._id" (mouseleave)="mostrarSucursal(empresaModelGet._id)">
+          <ng-container *ngFor="let empresa of empresaModelGet">
+            <option *ngIf="empresa.nombreEmpresa!=='Administrador por Defecto'" [value]="empresa._id">{{empresa.nombreEmpresa}}</option>
+          </ng-container>
+        </select>
       </div>
-</div>
-
-<div class="container">
-  <div class="row">
-    <div class="col-12 col-md-4 mt-4" *ngFor="let sucu of sucursalModelGet">
-        <ng-container >
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-md-4 mt-4" *ngFor="let sucu of sucursalModelGet">
+        <ng-container>
           <div class="card naranja-oscuro h-90 my-3" style="width: 18rem;">
             <img src="../../../assets/empresa-general.jpeg" class="card-img-top" alt="empresa-logo">
             <div class="card-body">
               <h4 class="card-title color-texto text-center">{{sucu.nombreSucursal}}</h4>
-              <h6 class="card-title color-texto">Ubicacion:  {{sucu.ubicacion}}</h6>
-              <div class="btn-group" role="group" aria-label="Basic example">
-                <button type="button" class="btn btn-danger">Eliminar</button>
-                <button class="btn btn-warning" type="button">
-                  Editar
-                </button>
-                <button type="button" class="nav-link text-light btn btn-primary" [routerLink]="['/empresa/sucursalProducto', sucu._id]">Ver Productos</button>
-              </div>
+              <h6 class="card-title color-texto">Ubicacion: {{sucu.ubicacion}}</h6>
             </div>
           </div>
         </ng-container>
       </div>
+    </div>
   </div>
+</div>
+
+<div class="container" *ngIf="_empresaService.obtenerIdentidad().rol === 'EMPRESA'">
+  <div class="row">
+    <div class="col-12 col-md-4 mt-4" *ngFor="let sucu of sucursalModelGet">
+      <ng-container>
+        <div class="card naranja-oscuro h-90 my-3" style="width: 18rem;">
+          <img src="../../../assets/empresa-general.jpeg" class="card-img-top" alt="empresa-logo">
+          <div class="card-body">
+            <h4 class="card-title color-texto text-center">{{sucu.nombreSucursal}}</h4>
+            <h6 class="card-title color-texto">Ubicacion: {{sucu.ubicacion}}</h6>
+            <div class="btn-group" role="group" aria-label="Basic example">
+              <button type="button" class="btn btn-danger">Eliminar</button>
+              <button class="btn btn-warning" type="button">
+                Editar
+              </button>
+              <button type="button" class="nav-link text-light btn btn-primary"
+                [routerLink]="['/empresa/sucursalProducto', sucu._id]">Ver Productos</button>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>

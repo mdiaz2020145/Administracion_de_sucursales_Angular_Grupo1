@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Empresas } from 'src/app/models/empresa.model';
 import { SucursalProducto } from 'src/app/models/sucursal-producto.model';
 import { sucursales } from 'src/app/models/sucursales.model';
 import { SucursalProductoService } from 'src/app/services/empresa-sucursal.service';
@@ -12,7 +13,7 @@ import { SucursalService } from 'src/app/services/sucursal.service';
   providers: [SucursalService, empresaService]
 })
 export class SucursalesComponent implements OnInit {
-  public empresaTotal;
+  public empresaModelGet=[];
   public sucursalProductoModelGetId: SucursalProducto;
   public sucursalModelGet: sucursales;
   public token;
@@ -25,6 +26,7 @@ export class SucursalesComponent implements OnInit {
 
   ngOnInit(): void {
     this.getEmpresa();
+    this.getObtenerEmpresa();
   }
 
   getEmpresa() {
@@ -66,11 +68,26 @@ export class SucursalesComponent implements OnInit {
   }
 
   getObtenerEmpresa() {
-    var listaEmpresas = this._empresaService.obtenerEmpresa(this.token)
-    console.log('listaEmpresa')
-    console.log(listaEmpresas)
-    console.log('empresaTotal')
-    console.log(this.empresaTotal)
-    return listaEmpresas
+    this._empresaService.obtenerEmpresa(this.token).subscribe(
+      (response)=>{
+        this.empresaModelGet=response.empresa;
+        console.log(this.empresaModelGet)
+      },
+      (error)=>{ console.log(<any>error)}
+    )
+  }
+
+  mostrarSucursal(idEmpresa) {
+    this._empresaService.obtenerEmpresaId(idEmpresa, this.token).subscribe(
+      (response)=>{
+        this._sucursalService.obtenerSucursalEmpresa(response.Empresa._id,this.token).subscribe(
+          (response)=>{
+            this.sucursalModelGet=response.Sucursales;
+          },
+          (error)=>{ console.log(<any>error)}
+        )
+      },
+      (error)=>{ console.log(<any>error)}
+    )
   }
 }
