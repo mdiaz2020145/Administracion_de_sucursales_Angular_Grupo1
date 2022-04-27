@@ -1,30 +1,50 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 <div class="container">
-    <div class="row justify-content-md-center align-items-center max-height">
-        <div class="col col-lg-6">
-            <div class="card naranja-oscuro bordeado">
-                <div class="card-body mt-2">
-                    <h5 class="card-title text-center text-light fs-2 mb-4">Inicio de Sesion</h5>
-                    <form>
-                        <div class="mb-3 mx-5">
-                            <label for="exampleInputEmail1" class="form-label text-light">Nombre de usuario</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" name="usuario" #usuario="ngModel"
-                            [(ngModel)]="loginEmpresa.usuario">
-                        </div>
-                        <div class="mb-3 mx-5">
-                            <label for="exampleInputPassword1" class="form-label text-light">Contraseña</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1" name="password" #password="ngModel"
-                            [(ngModel)]="loginEmpresa.password">
-                        </div>
-                        <div class="mb-3 mx-5 form-check">
-                            <input type="checkbox" class="form-check-input " id="exampleCheck1">
-                            <label class="form-check-label text-light" for="exampleCheck1">Mantener la sesion iniciada</label>
-                        </div>
-                        <div class="text-center">
-                            <button type="submit" class="btn btn-primary oscuro" style="border:none" (click)="login()">Iniciar Sesion</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
+  <div class="container h-100">
+    <div class="d-flex justify-content-center h-100">
+      <div class="user_card">
+        <div class="d-flex justify-content-center">
+          <div class="brand_logo_container">
+            <img src='../../../assets/profile.png' class="brand_logo" alt="Logo">
+          </div>
         </div>
+        <div class="d-flex justify-content-center form_container">
+          <form>
+            <div class="input-group mb-3">
+              <div class="input-group-append">
+                <span class="input-group-text"><i class="fas fa-user"></i></span>
+              </div>
+              <input type="text" name="" class="form-control input_user" value="" placeholder="usuario" name="usuario"
+                #usuario="ngModel" [(ngModel)]="loginEmpresa.usuario">
+            </div>
+            <div class="input-group mb-2">
+              <div class="input-group-append">
+                <span class="input-group-text"><i class="fas fa-key"></i></span>
+              </div>
+              <input type="password" name="" class="form-control input_pass" value="" placeholder="contraseña"
+                name="password" #password="ngModel" [(ngModel)]="loginEmpresa.password">
+            </div>
+            <div class="form-group">
+              <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="customControlInline">
+                <label  class="custom-control-label gris-claro" for="customControlInline">Mantener sesión iniciada</label>
+              </div>
+            </div>
+            <div class="d-flex justify-content-center mt-3 login_container">
+              <button type="button" name="button" class="btn login_btn" (click)="login()">Ingresar</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="mt-4">
+          <div class="d-flex justify-content-center links gris-claro" >
+            ¿No tienes cuenta? <a routerLink="/registro" routerLinkActive="active" class="ml-2">Registrar</a>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>

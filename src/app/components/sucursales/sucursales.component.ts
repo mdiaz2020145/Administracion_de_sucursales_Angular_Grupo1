@@ -12,55 +12,65 @@ import { SucursalService } from 'src/app/services/sucursal.service';
   providers: [SucursalService, empresaService]
 })
 export class SucursalesComponent implements OnInit {
+  public empresaTotal;
   public sucursalProductoModelGetId: SucursalProducto;
   public sucursalModelGet: sucursales;
   public token;
-  public validation: Boolean=true;
+  public validation: Boolean = true;
 
-  constructor(public _sucursalProducto:SucursalProductoService,public _sucursalService: SucursalService, public _empresaService: empresaService) {
-    this.sucursalProductoModelGetId = new SucursalProducto('','','','',0,0,0);
-    this.token=_empresaService.obtenerToken();
-   }
+  constructor(public _sucursalProducto: SucursalProductoService, public _sucursalService: SucursalService, public _empresaService: empresaService) {
+    this.sucursalProductoModelGetId = new SucursalProducto('', '', '', '', 0, 0, 0);
+    this.token = _empresaService.obtenerToken();
+  }
 
   ngOnInit(): void {
     this.getEmpresa();
   }
 
-  getEmpresa(){
+  getEmpresa() {
     this._sucursalService.obtenerSucursal(this.token).subscribe(
-      (response)=>{
+      (response) => {
 
-        if(response.empresa==0){
-          this.validation=false;
-        }else{
-          this.validation=true;
-          this.sucursalModelGet =response.Sucursales;
+        if (response.empresa == 0) {
+          this.validation = false;
+        } else {
+          this.validation = true;
+          this.sucursalModelGet = response.Sucursales;
         }
         console.log(response)
 
         console.log(this.sucursalModelGet)
       },
-      (error)=>{ console.log(<any>error)}
+      (error) => { console.log(<any>error) }
     )
   }
 
-  getSucursalId(idSucursal){
-    this._sucursalProducto.obtenerProductoSucursal(idSucursal,this.token).subscribe(
-      (response)=>{
-        if(response.empresa==0){
-          this.validation=false;
-        }else{
-          this.validation=true;
-          this.sucursalProductoModelGetId =response.Productos;
+  getSucursalId(idSucursal) {
+    this._sucursalProducto.obtenerProductoSucursal(idSucursal, this.token).subscribe(
+      (response) => {
+        if (response.empresa == 0) {
+          this.validation = false;
+        } else {
+          this.validation = true;
+          this.sucursalProductoModelGetId = response.Productos;
         }
         console.log(response)
 
       },
-      (error)=>{
+      (error) => {
         console.log(<any>error);
       }
 
     )
 
-    }
+  }
+
+  getObtenerEmpresa() {
+    var listaEmpresas = this._empresaService.obtenerEmpresa(this.token)
+    console.log('listaEmpresa')
+    console.log(listaEmpresas)
+    console.log('empresaTotal')
+    console.log(this.empresaTotal)
+    return listaEmpresas
+  }
 }

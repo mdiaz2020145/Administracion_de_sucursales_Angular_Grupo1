@@ -7,12 +7,12 @@ import { empresaService } from 'src/app/services/empresa.service';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  providers:[empresaService]
+  providers: [empresaService]
 })
 export class LoginComponent implements OnInit {
   public loginEmpresa: Empresas;
   constructor(private _empresaService: empresaService, private _router: Router) {
-    this.loginEmpresa=new Empresas(
+    this.loginEmpresa = new Empresas(
       '',
       '',
       '',
@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
       '',
       ''
     );
-   }
+  }
 
   ngOnInit(): void {
   }
@@ -39,12 +39,17 @@ export class LoginComponent implements OnInit {
     })
   }
 
-  login(){
+  login() {
     this._empresaService.login(this.loginEmpresa, "false").subscribe(
-      (response)=>{
-        this.loginTokenPromesa().then(respuesta=>{
+      (response) => {
+        this.loginTokenPromesa().then(respuesta => {
           localStorage.setItem('identidad', JSON.stringify(response.empresa));
-          this._router.navigate(['/dashboard']);
+          if (this._empresaService.obtenerIdentidad().rol === 'EMPRESA') {
+            this._router.navigate(['/empresa/inicio']);
+          } else if (this._empresaService.obtenerIdentidad().rol === 'ADMIN') {
+            this._router.navigate(['/admin/dashboard']);
+          }
+
         });
       },
       (error) => {

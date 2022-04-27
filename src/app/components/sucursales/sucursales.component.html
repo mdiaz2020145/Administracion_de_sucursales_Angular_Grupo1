@@ -1,3 +1,16 @@
+<div *ngIf="_empresaService.obtenerIdentidad().rol === 'ADMIN'">
+     <div class="container">
+            <label for="inputEmpresa" class="form-label text-light fs-5">¿Empresa que desea ver sus surcusales?</label>
+            <select class="form-select" aria-label="Default select example" id="inputEmpresa" name="empresa"
+              #empresa="ngModel" [(ngModel)]="empresaTotal">
+
+              <ng-container *ngFor="let tipo of this.getObtenerEmpresa()">
+                <option [value]="tipo.nombreEmpresa">{{tipo.nombreEmpresa}}</option>
+              </ng-container>
+            </select>
+
+      </div>
+</div>
 <div class="container">
   <div class="row">
       <div class="col-12 col-md-4 mt-4" *ngFor="let sucu of sucursalModelGet">
@@ -12,7 +25,7 @@
                 <button class="btn btn-warning" type="button">
                   Editar
                 </button>
-                <button type="button" class="nav-link text-light btn btn-primary" [routerLink]="['/sucursalProducto', sucu._id]">Ver Productos</button>
+                <button type="button" class="nav-link text-light btn btn-primary" [routerLink]="['/empresa/sucursalProducto', sucu._id]">Ver Productos</button>
               </div>
             </div>
           </div>
