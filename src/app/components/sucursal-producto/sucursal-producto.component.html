@@ -10,9 +10,12 @@
               <h6 class="card-title color-texto">Precio: {{prodSuc.precio}}</h6>
               <h6 class="card-title color-texto">Vendido: {{prodSuc.vendido}}</h6>
               <div class="btn-group" role="group" aria-label="Basic example">
-                <button type="button" class="btn btn-danger">Eliminar</button>
-                <button class="btn btn-warning" type="button">
-                  Editar
+                <button type="button" class="btn btn-white"></button>
+                <button class="btn btn-white" type="button">       
+                </button>
+                <button class="btn btn-success" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample"
+                (click)="getSucursalId(prodSuc._id)">
+                  Vender
                 </button>
               </div>
             </div>
@@ -20,3 +23,20 @@
         </ng-container>
       </div>
   </div>
+
+<!---OffCanvas vender productos-->
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasExampleLabel">Vender producto</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <form>
+      <div class="mb-3">
+        <label for="inputVendido" class="from-label">Cantidad a vender</label>
+        <input type="text" class="form-control" id="inputVendido" name="vendido"  #vendido="ngModel"  [(ngModel)]="sucursalGetId.vendido">
+      </div>
+      <button class="btn btn-success" data-bs-dismiss="offcanvas" (click)="putVenta()">Vender producto</button>
+    </form>
+  </div>
+</div>

@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs';
 import { sucursales } from '../models/sucursales.model';
+import { SucursalProducto } from '../models/sucursal-producto.model';
 
 @Injectable({
   providedIn: 'root'
@@ -48,5 +49,12 @@ export class SucursalService {
   eliminarSucursal(id: String, token):Observable<any>{
     let headersToken=this.headersVariable.set('Authorization', token)
     return this._http.delete(this.url + '/eliminarSucursal/'+ id,{headers: headersToken});
+  }
+
+  ventaProductoSucursal(modeloSucursalProducto:SucursalProducto,token):Observable<any>{
+    let parametros = JSON.stringify(modeloSucursalProducto);
+    let headersToken=this.headersVariable.set('Authorization', token)
+
+    return this._http.post(this.url + '/simularVenta'+ modeloSucursalProducto.nombreProducto, parametros,{headers: headersToken});
   }
 }
