@@ -13,14 +13,18 @@ import { SucursalService } from 'src/app/services/sucursal.service';
   providers: [SucursalService, empresaService]
 })
 export class SucursalesComponent implements OnInit {
-  public empresaModelGet=[];
+  public empresaModelGet = [];
   public sucursalProductoModelGetId: SucursalProducto;
+  public sucursalPost:sucursales;
+  public sucursalGetId: sucursales; 
   public sucursalModelGet: sucursales;
   public token;
   public validation: Boolean = true;
 
   constructor(public _sucursalProducto: SucursalProductoService, public _sucursalService: SucursalService, public _empresaService: empresaService) {
     this.sucursalProductoModelGetId = new SucursalProducto('', '', '', '', 0, 0, 0);
+    this.sucursalPost = new sucursales('','','','');
+    this.sucursalGetId = new sucursales('','','','');
     this.token = _empresaService.obtenerToken();
   }
 
@@ -89,5 +93,68 @@ export class SucursalesComponent implements OnInit {
       },
       (error)=>{ console.log(<any>error)}
     )
+  }
+
+
+  postAgregarSucursal(){
+    this._sucursalService.agregarSucursal(this.sucursalPost,this.token).subscribe(
+      (response)=>{
+        this.getEmpresa();
+      },
+      (error)=>{
+        console.log(<any>error)
+      }
+    )
+  }
+
+  getSucursalesId(idSucursal){
+    this._sucursalService.obtenerSucursalId(idSucursal,this.token).subscribe(
+      (response)=>{
+        if(response.sucursal==0){
+          this.validation=false;
+        }else{
+          this.validation=true;
+          this.sucursalGetId = response.sucursal;
+        }
+        console.log(this.sucursalGetId)
+      },
+      (error)=>{
+        console.log(<any>error)
+      }
+    )
+  }
+
+  putSucursales(){
+    this._sucursalService.editarSucursal(this.sucursalGetId,this.token).subscribe(
+      (response)=>{
+        console.log(response);
+        if(response.sucursal==0){
+          this.validation=false;
+        }else{
+          this.validation=true;
+          this.getEmpresa();
+        }
+      },
+      (error)=>{
+        console.log(error)
+      }
+    )
+  }
+
+  deleteSucursales(idSucursal){
+      this._sucursalService.eliminarSucursal(idSucursal,this.token).subscribe(
+        (response)=>{
+          console.log(response);
+          if(response.sucursal==0){
+            this.validation=false;
+          }else{
+            this.validation=true;
+            this.getEmpresa();
+          }
+        },
+        (error)=>{
+          console.log(error);
+        }
+      )
   }
 }
