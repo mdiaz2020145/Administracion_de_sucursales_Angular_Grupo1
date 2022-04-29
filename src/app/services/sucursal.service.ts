@@ -52,15 +52,15 @@ export class SucursalService {
   }
 
 
-  obtenerProductoSucursalNombre(nombre:String,token):Observable<any>{
+  obtenerProductoSucursalNombre(id:String,nombre:String,token):Observable<any>{
     let headersToken=this.headersVariable.set('Authorization', token)
-    return this._http.get(this.url + '/obtenerProductoNombre/'+nombre,{headers: headersToken} );
+    return this._http.get(this.url + '/obtenerProductoSucursalNombre/'+id+'/'+nombre,{headers: headersToken} );
   }
 
   ventaProductoSucursal(modeloSucursalProducto:SucursalProducto,token):Observable<any>{
     let parametros = JSON.stringify(modeloSucursalProducto);
     let headersToken=this.headersVariable.set('Authorization', token)
 
-    return this._http.post(this.url + '/simularVenta/'+ modeloSucursalProducto.nombreProducto, parametros,{headers: headersToken});
+    return this._http.put(this.url + '/simularVenta/'+ modeloSucursalProducto.idSucursal, parametros,{headers: headersToken});
   }
 }

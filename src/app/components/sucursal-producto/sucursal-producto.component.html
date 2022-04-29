@@ -11,10 +11,10 @@
               <h6 class="card-title color-texto">Vendido: {{prodSuc.vendido}}</h6>
               <div class="btn-group" role="group" aria-label="Basic example">
                 <button type="button" class="btn btn-white"></button>
-                <button class="btn btn-white" type="button">       
+                <button class="btn btn-white" type="button">
                 </button>
                 <button class="btn btn-success" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample"
-                (click)="getProductoNombre(prodSuc.nombreProducto)">
+                (click)="getProductoNombre(prodSuc.idSucursal._id,prodSuc.nombreProducto)">
                   Vender
                 </button>
               </div>
@@ -34,11 +34,11 @@
     <form>
       <div class="mb-3">
         <label for="inputnombreProducto" class="from-label">Nombre del producto</label>
-        <input type="text" class="form-control" id="inputnombreProducto" name="nombreProducto"  #nombreProducto="ngModel"  [(ngModel)]="sucursalGetId.nombreProducto">
+        <input type="text" class="form-control" id="inputnombreProducto" name="nombreProducto"  #nombreProducto="ngModel"  [(ngModel)]="productoGetNombre.nombreProducto">
       </div>
       <div class="mb-3">
         <label for="inputVendido" class="from-label">Cantidad a vender</label>
-        <input type="text" class="form-control" id="inputVendido" name="vendido"  #vendido="ngModel"  [(ngModel)]="sucursalGetId.vendido">
+        <input type="text" class="form-control" id="inputVendido" name="cantidad"  #cantidad="ngModel"  [(ngModel)]="productoGetNombre.cantidadProducto">
       </div>
       <button class="btn btn-success" data-bs-dismiss="offcanvas" (click)="putVenta()">Vender producto</button>
     </form>

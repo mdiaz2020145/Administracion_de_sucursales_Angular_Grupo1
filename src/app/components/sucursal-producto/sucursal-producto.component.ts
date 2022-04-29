@@ -52,14 +52,15 @@ export class SucursalProductoComponent implements OnInit {
 
   }
 
-  getProductoNombre(nombreProducto){
-    this._sucursalService.obtenerProductoSucursalNombre(nombreProducto,this.token).subscribe(
+  getProductoNombre(idSucursal, nombre){
+    this._sucursalService.obtenerProductoSucursalNombre(idSucursal,nombre,this.token).subscribe(
       (response)=>{
           if(response.empresa==0){
             this.validation = false;
           }else{
             this.validation=true;
-            this.productoGetNombre = response.ProductosSucursal
+            this.productoGetNombre = response.Producto
+            console.log(this.productoGetNombre)
           }
       },
       (error)=>{
@@ -70,9 +71,10 @@ export class SucursalProductoComponent implements OnInit {
   }
 
   putVenta(){
-    this._sucursalService.ventaProductoSucursal(this.sucursalGetId,this.token).subscribe(
+    this._sucursalService.ventaProductoSucursal(this.productoGetNombre,this.token).subscribe(
       (response)=>{
-          this.getSucursalId('idSucursal');
+          this.getSucursalId(this.productoGetNombre.idSucursal);
+          console.log(this.productoGetNombre)
       },
       (error)=>{
         console.log(<any>error);
