@@ -16,16 +16,19 @@ export class SucursalProductoComponent implements OnInit {
   public token;
   public validation: Boolean=true;
   public sucursalGetId : SucursalProducto;
+  public productoGetNombre: SucursalProducto;
 
   constructor(public _sucursalProducto:SucursalProductoService,public _empresaService: empresaService, public _sucursalService: SucursalService, public _activatedRoute: ActivatedRoute) {
     //this.sucursalProductoModelGetId = new SucursalProducto('','','','',0,0,0);
     this.token=_empresaService.obtenerToken();
     this.sucursalGetId = new SucursalProducto ("","","","",0,0,0);
+    this.productoGetNombre = new SucursalProducto('','','','',0,0,0);
    }
 
   ngOnInit(): void {
     this._activatedRoute.paramMap.subscribe((dataRuta) => {
       this.getSucursalId(dataRuta.get('idSucursal'))
+      //this.getProductoNombre(dataRuta.get('nombreProducto'))
     })
   }
 
@@ -45,6 +48,23 @@ export class SucursalProductoComponent implements OnInit {
         console.log(<any>error);
       }
 
+    )
+
+  }
+
+  getProductoNombre(nombreProducto){
+    this._sucursalService.obtenerProductoSucursalNombre(nombreProducto,this.token).subscribe(
+      (response)=>{
+          if(response.empresa==0){
+            this.validation = false;
+          }else{
+            this.validation=true;
+            this.productoGetNombre = response.ProductosSucursal
+          }
+      },
+      (error)=>{
+        console.log(<any>error);
+      }
     )
 
   }

@@ -14,7 +14,7 @@
                 <button class="btn btn-white" type="button">       
                 </button>
                 <button class="btn btn-success" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample"
-                (click)="getSucursalId(prodSuc._id)">
+                (click)="getProductoNombre(prodSuc.nombreProducto)">
                   Vender
                 </button>
               </div>
@@ -32,6 +32,10 @@
   </div>
   <div class="offcanvas-body">
     <form>
+      <div class="mb-3">
+        <label for="inputnombreProducto" class="from-label">Nombre del producto</label>
+        <input type="text" class="form-control" id="inputnombreProducto" name="nombreProducto"  #nombreProducto="ngModel"  [(ngModel)]="sucursalGetId.nombreProducto">
+      </div>
       <div class="mb-3">
         <label for="inputVendido" class="from-label">Cantidad a vender</label>
         <input type="text" class="form-control" id="inputVendido" name="vendido"  #vendido="ngModel"  [(ngModel)]="sucursalGetId.vendido">

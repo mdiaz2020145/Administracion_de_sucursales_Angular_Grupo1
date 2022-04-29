@@ -51,10 +51,16 @@ export class SucursalService {
     return this._http.delete(this.url + '/eliminarSucursal/'+ id,{headers: headersToken});
   }
 
+
+  obtenerProductoSucursalNombre(nombre:String,token):Observable<any>{
+    let headersToken=this.headersVariable.set('Authorization', token)
+    return this._http.get(this.url + '/obtenerProductoNombre/'+nombre,{headers: headersToken} );
+  }
+
   ventaProductoSucursal(modeloSucursalProducto:SucursalProducto,token):Observable<any>{
     let parametros = JSON.stringify(modeloSucursalProducto);
     let headersToken=this.headersVariable.set('Authorization', token)
 
-    return this._http.post(this.url + '/simularVenta'+ modeloSucursalProducto.nombreProducto, parametros,{headers: headersToken});
+    return this._http.post(this.url + '/simularVenta/'+ modeloSucursalProducto.nombreProducto, parametros,{headers: headersToken});
   }
 }
