@@ -60,6 +60,7 @@ export class SucursalProductoComponent implements OnInit {
           }else{
             this.validation=true;
             this.productoGetNombre = response.Producto
+            this.productoGetNombre.cantidadProducto = 0
             console.log(this.productoGetNombre)
           }
       },
