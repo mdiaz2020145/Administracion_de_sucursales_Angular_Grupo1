@@ -1,3 +1,18 @@
+<div class="container shadow min-vh-100 py-4">
+  <div class="row">
+      <div class="col-md-5 mx-auto">
+          <div class="small fw-light">Buscar empresa</div>
+          <div class="input-group">
+              <input class="form-control border-end-0 border rounded-pill" [(ngModel)]="buscarEmpresa" name="buscarEmpresa" placeholder="nombre de la empresa"  type="search" value="search" id="example-search-input">
+              <span class="input-group-append">
+                  <button class="btn btn-outline-info bg-white border-bottom-0 border rounded-pill ms-n5" type="button">
+                    Buscar
+                  </button>
+              </span>
+          </div>
+      </div>
+  </div>
+
 <!--Boton-->
 <div class="container mt-4 ml-3">
   <button class="btn btn-primary "type="button" data-bs-toggle="modal" data-bs-target="#modalAgregarEmpresa " *ngIf="_empresaService.obtenerIdentidad().rol === 'ADMIN'">Agregar Empresa</button>
@@ -6,7 +21,7 @@
 <!-- card-listar -->
 <div class="container">
   <div class="row" *ngIf="validation==true">
-      <div class="col-12 col-md-4 mt-4" *ngFor="let emp of empresaModelGet">
+      <div class="col-12 col-md-4 mt-4" *ngFor="let emp of empresaModelGet  | buscarEmpresa:buscarEmpresa">
         <ng-container>
           <div class="card naranja-oscuro h-90 my-3" style="width: 18rem;">
             <img src="../../../assets/empresa-general.jpeg" class="card-img-top" alt="empresa-logo">
@@ -35,7 +50,7 @@
   </div>
 </div>
 
-<!-- Modal -->
+<!-- Modal agregar empresa -->
 <div class="modal fade" id="modalAgregarEmpresa" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -44,7 +59,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-        <form>
+        <form #agregarEmpresa = "ngForm">
             <div class="mb-3">
                 <label for="inputNombre" class="form-label">nombre de usuario</label>
                 <input type="text" class="form-control" id="inputusuario" name="usuario" #usuario="ngModel" [(ngModel)]="empresaModelPost.usuario">
@@ -71,7 +86,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="postEmpresa()">Agregar</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="postEmpresa(agregarEmpresa)">Agregar</button>
         </div>
       </div>
     </div>

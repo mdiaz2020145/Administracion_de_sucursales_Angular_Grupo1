@@ -14,6 +14,7 @@ import { SucursalService } from 'src/app/services/sucursal.service';
 export class SucursalProductoComponent implements OnInit {
   public sucursalProductoModelGetId=[];
   public token;
+  public buscar;
   public validation: Boolean=true;
   public sucursalGetId : SucursalProducto;
   public productoGetNombre: SucursalProducto;

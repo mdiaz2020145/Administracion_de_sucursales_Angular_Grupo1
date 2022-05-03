@@ -14,6 +14,7 @@
                 <li *ngIf="_empresaService.obtenerIdentidad().rol === 'ADMIN'" class="nav-item"><a class="nav-link text-light" routerLink="/admin/inicio" routerLinkActive="active">Inicio</a></li>
                 <li *ngIf="_empresaService.obtenerIdentidad().rol === 'ADMIN'" class="nav-item"><a class="nav-link text-light" routerLink="/admin/dashboard" routerLinkActive="active">Empresas</a></li>
                 <li *ngIf="_empresaService.obtenerIdentidad().rol === 'ADMIN'" class="nav-item"><a class="nav-link text-light" routerLink="/admin/sucursales" routerLinkActive="active">Sucursales</a></li>
+                <li class="nav-item"><a (click)="cerrarSesion()" class="nav-link text-light" routerLink="/login" routerLinkActive="active"> Cerrar sesión </a></li>
             </ul>
         </div>
     </div>

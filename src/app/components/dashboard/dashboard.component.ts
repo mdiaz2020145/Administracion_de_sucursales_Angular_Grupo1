@@ -23,6 +23,7 @@ export class DashboardComponent implements OnInit {
   public empresaModelGet: Empresas;
   public empresaModelGetId: Empresas;
   public token;
+  public buscarEmpresa;
   public validation: Boolean=true;
 
   constructor(public _empresaService: empresaService) {
@@ -71,11 +72,12 @@ export class DashboardComponent implements OnInit {
 
   }
 
-  postEmpresa(){
+  postEmpresa(agregarEmpresaForm){
     this._empresaService.agregarEmpresa(this.empresaModelPost).subscribe(
       (response)=>{
         console.log(response)
         this.getEmpresa();
+        agregarEmpresaForm.reset();
       },
       (error)=>{
         console.log(<any>error);

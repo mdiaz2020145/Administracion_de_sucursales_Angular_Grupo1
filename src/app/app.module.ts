@@ -15,6 +15,8 @@ import { EmpresaProductoComponent } from './components/empresa-producto/empresa-
 import { SucursalProductoComponent } from './components/sucursal-producto/sucursal-producto.component';
 import { InicioUsuarioComponent } from './components/inicio-usuario/inicio-usuario.component';
 import { InicioAdmiComponent } from './components/inicio-admi/inicio-admi.component';
+import { BuscarPipe } from './pipes/buscar.pipe';
+import { BuscarEmpresaPipe } from './pipes/buscar-empresa.pipe';
 
 
 @NgModule({
@@ -30,6 +32,8 @@ import { InicioAdmiComponent } from './components/inicio-admi/inicio-admi.compon
     SucursalProductoComponent,
     InicioUsuarioComponent,
     InicioAdmiComponent,
+    BuscarPipe,
+    BuscarEmpresaPipe,
   ],
   imports: [
     BrowserModule,

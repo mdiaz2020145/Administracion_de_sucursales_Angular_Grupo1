@@ -96,10 +96,11 @@ export class SucursalesComponent implements OnInit {
   }
 
 
-  postAgregarSucursal(){
+  postAgregarSucursal(agregarSucursalForm){
     this._sucursalService.agregarSucursal(this.sucursalPost,this.token).subscribe(
       (response)=>{
         this.getEmpresa();
+        agregarSucursalForm.reset();
       },
       (error)=>{
         console.log(<any>error)

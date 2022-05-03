@@ -17,6 +17,7 @@ public empresaProductoModelGet: EmpresaProducto;
 public empresaProductoModelGetId: EmpresaProducto;
 public sucursalProductoModelPost:SucursalProducto;
 public token;
+public buscar;
 public validation: Boolean=true;
 
   constructor(public _servicesProducto:ServicesProductos, public _empresaService: empresaService) {
@@ -57,10 +58,11 @@ public validation: Boolean=true;
     )
   }
 
-  postAgregarProducto(){
+  postAgregarProducto(agregarProductoForm){
     this._servicesProducto.agregarProducto(this.empresaProductoModelPost,this.token).subscribe(
       (response)=>{
           this.getProductos();
+          agregarProductoForm.reset();
       },
       (error)=>{
         console.log(<any>error);
