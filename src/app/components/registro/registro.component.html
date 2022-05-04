@@ -3,26 +3,26 @@
     <div class="col col-lg-7">
       <div class="card naranja-oscuro bordeado">
         <div class="card-body">
-          <h5 class="card-title text-center text-light fs-2 mb-4">Bienvenido</h5>
+          <h5 class="card-title text-center gris-claro fs-2 mb-4">Bienvenido</h5>
           <form>
             <div class="mb-3">
-              <label for="inputNombre" class="form-label text-light fs-5">Usuario</label>
-              <input type="text" class="form-control" id="inputusuario" name="usuario" #usuario="ngModel"
+              <label for="inputNombre" class="form-label gris-claro fs-5">Usuario De La Empresa</label>
+              <input type="text" class="form-control bordeadoInput" id="inputusuario" name="usuario" #usuario="ngModel"
                 [(ngModel)]="empresaModelPost.usuario">
             </div>
             <div class="mb-3">
-              <label for="inputNombre" class="form-label text-light fs-5">Nombre De La Empresa</label>
-              <input type="text" class="form-control" id="inputNombre" name="nombreEmpresa" #nombreEmpresa="ngModel"
+              <label for="inputNombre" class="form-label gris-claro fs-5">Nombre De La Empresa</label>
+              <input type="text" class="form-control bordeadoInput" id="inputNombre" name="nombreEmpresa" #nombreEmpresa="ngModel"
                 [(ngModel)]="empresaModelPost.nombreEmpresa">
             </div>
             <div class="mb-3">
-              <label for="inputNombre" class="form-label text-light fs-5">Contraseña de La Empresa</label>
-              <input type="password" class="form-control" id="inputpassword" name="password" #password="ngModel"
+              <label for="inputNombre" class="form-label gris-claro fs-5">Contraseña De La Empresa</label>
+              <input type="password" class="form-control bordeadoInput" id="inputpassword" name="password" #password="ngModel"
                 [(ngModel)]="empresaModelPost.password">
             </div>
             <div class="mb-3">
-              <label for="inputTipoEmpresa" class="form-label text-light fs-5">Tipo Empresa</label>
-              <select class="form-select" aria-label="Default select example" id="inputTipoEmpresa" name="tipoEmpresa"
+              <label for="inputTipoEmpresa" class="form-label gris-claro fs-5">Tipo Empresa</label>
+              <select class="form-select bordeadoInput" aria-label="Default select example" id="inputTipoEmpresa" name="tipoEmpresa"
                 #tipoEmpresa="ngModel" [(ngModel)]="empresaModelPost.tipoEmpresa">
                 <!-- <option selected="true" disabled="disabled">Elije el tipo de empresa que seas</option> -->
                 <ng-container *ngFor="let tipo of tipo">
@@ -30,10 +30,10 @@
                 </ng-container>
               </select>
             </div>
-            <div class="btn-group centrar w-50 p-2" role="group" aria-label="Basic example">
-              <button type="submit" class="btn btn-primary oscuro mt-3 justify-content-center" style="border: none"
+            <div class="contenedorBotones centrar w-50 p-2 text-center" role="group" aria-label="Basic example">
+              <button type="submit" class="btn btn-success oscuro mt-3 justify-content-center " style="border: none"
                 (click)="postEmpresa()">Guardar</button>
-              <button routerLink="/login" routerLinkActive="active"  type="reset" class="btn btn-primary bg-danger mt-3 justify-content-center"
+              <button routerLink="/login" routerLinkActive="active"  type="reset" class="btn btn-primary bg-danger mt-3 justify-content-center espacio"
                 style="border: none">Cancelar</button>
             </div>
           </form>

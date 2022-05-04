@@ -11,18 +11,18 @@
   }
 
   .naranja-claro{
-    background-color: #DAAE88;
+    background-color: #F2E4D7;
   }
 
   .naranja-oscuro{
-    background-color: #965725;
+    background-color: #457092;
   }
 
   .gris-claro{
-    background-color: #dde8e7;
+    color: white;
   }
   .bordeado{
-    border-radius: 25px;
+    border-radius: 15px;
   }
 
   .text-morado{
@@ -34,4 +34,23 @@
     display: flex;
     flex-direction: center;
 
+  }
+
+  .contenedorBotones{
+    margin: auto;
+    width: 60%;
+    text-align: center;
+    justify-content: center;
+  }
+
+  .espacio{
+    margin-left: 10px;
+  }
+
+  .container{
+    max-width: 100vh;
+  }
+
+  .bordeadoInput{
+    border-radius: 9px;
   }

@@ -1,7 +1,7 @@
-<div class="container shadow min-vh-100 py-4">
+<div class="container  min-vh-100 py-4">
   <div class="row">
       <div class="col-md-5 mx-auto">
-          <div class="small fw-light">Buscar producto</div>
+          <div class="small fw-light color-texto text-center"><h5>¿Producto que desea buscar?</h5></div>
           <div class="input-group">
               <input class="form-control border-end-0 border rounded-pill" [(ngModel)]="buscar" name="buscar" placeholder="buscar productos"  type="search" value="search" id="example-search-input">
               <span class="input-group-append">
@@ -33,7 +33,7 @@
                 <h6 class="card-title color-texto">Nombre del proveedor: {{ePro.nombreProveedor}}</h6>
                 <h6 class="card-title color-texto">cantidad: {{ePro.cantidad}}</h6>
                 <h6 class="card-title color-texto">Precio: {{ePro.precio}}</h6>
-                <div class="btn-group" role="group" aria-label="Basic example">
+                <div class="text-center" role="group" aria-label="Basic example">
                   <button type="button" class="btn btn-danger" (click)="deleteProducto(ePro._id)">Eliminar</button>
                   <button class="btn btn-warning" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample"
                   (click)="getProductosId(ePro._id)">

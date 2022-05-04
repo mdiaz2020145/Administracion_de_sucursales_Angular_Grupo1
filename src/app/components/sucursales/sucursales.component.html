@@ -21,7 +21,7 @@
     <div class="row">
       <div class="col-12 col-md-4 mt-4" *ngFor="let sucu of sucursalModelGet">
         <ng-container>
-          <div class="card naranja-oscuro h-90 my-3" style="width: 18rem;">
+          <div class="card naranja-oscuro h-90 my-3" style="width: 19.4rem;">
             <img src="../../../assets/empresa-general.jpeg" class="card-img-top" alt="empresa-logo">
             <div class="card-body">
               <h4 class="card-title color-texto text-center">{{sucu.nombreSucursal}}</h4>
@@ -38,19 +38,19 @@
   <div class="row">
     <div class="col-12 col-md-4 mt-4" *ngFor="let sucu of sucursalModelGet">
       <ng-container>
-        <div class="card naranja-oscuro h-90 my-3" style="width: 18rem;">
+        <div class="card naranja-oscuro h-90 my-3" style="width: 19.4rem;">
           <img src="../../../assets/empresa-general.jpeg" class="card-img-top" alt="empresa-logo">
           <div class="card-body">
             <h4 class="card-title color-texto text-center">{{sucu.nombreSucursal}}</h4>
             <h6 class="card-title color-texto">Ubicacion: {{sucu.ubicacion}}</h6>
-            <div class="btn-group" role="group" aria-label="Basic example">
+            <div class="contenedorBotones btn btn-group" role="group" aria-label="Basic example">
               <button type="button" class="btn btn-danger" (click)="deleteSucursales(sucu._id)">Eliminar</button>
-              <button class="btn btn-warning" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample"
+              <button class="btn btn-warning " type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample"
               (click)="getSucursalesId(sucu._id)">
                 Editar
               </button>
               <button type="button" class="nav-link text-light btn btn-primary"
-                [routerLink]="['/empresa/sucursalProducto', sucu._id]">Ver Productos</button>
+                [routerLink]="['/empresa/sucursalProducto', sucu._id]">Productos</button>
             </div>
           </div>
         </div>

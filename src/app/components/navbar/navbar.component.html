@@ -4,8 +4,6 @@
             aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-                <li class="nav-item"><a class="nav-link text-light" routerLink="/login" routerLinkActive="active">Login</a></li>
-                <li class="nav-item"><a class="nav-link text-light" routerLink="/registro" routerLinkActive="active">Registrarse</a></li>
                 <!-- usuario -->
                 <li *ngIf="_empresaService.obtenerIdentidad().rol === 'EMPRESA'" class="nav-item"><a class="nav-link text-light" routerLink="/empresa/inicio" routerLinkActive="active">Inicio</a></li>
                 <li *ngIf="_empresaService.obtenerIdentidad().rol === 'EMPRESA'"  class="nav-item"><a class="nav-link text-light" routerLink="/empresa/sucursales" routerLinkActive="active">Sucursales</a></li>
