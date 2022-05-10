@@ -56,3 +56,28 @@
     </form>
   </div>
 </div>
+
+<br>
+<br>
+<div>
+  <div class="text-center">
+    <h1>Cantidad de producto mas vendido</h1>
+  </div>
+</div>
+
+<br>
+
+
+<div style="display: block;">
+  <canvas baseChart
+    chartType="pie"
+    [data]="chartData"
+    [colors]="chartColors"
+    [labels]="chartLabel"
+    [options]="chartOptions"
+    [plugins]="chartPlugins"
+    [legend]="chartLegend">
+  </canvas>
+</div>
+
+

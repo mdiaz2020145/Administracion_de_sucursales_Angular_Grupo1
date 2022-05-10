@@ -17,6 +17,7 @@ import { InicioUsuarioComponent } from './components/inicio-usuario/inicio-usuar
 import { InicioAdmiComponent } from './components/inicio-admi/inicio-admi.component';
 import { BuscarPipe } from './pipes/buscar.pipe';
 import { BuscarEmpresaPipe } from './pipes/buscar-empresa.pipe';
+import { ChartsModule } from '@rinminase/ng-charts';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { BuscarEmpresaPipe } from './pipes/buscar-empresa.pipe';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

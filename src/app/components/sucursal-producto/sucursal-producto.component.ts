@@ -12,6 +12,25 @@ import { SucursalService } from 'src/app/services/sucursal.service';
   providers: [empresaService, SucursalProductoService]
 })
 export class SucursalProductoComponent implements OnInit {
+
+  chartOptions={
+    responsive: true,
+  };
+
+  //Nombre de los productos 
+  chartLabel:any = [];
+
+  //Cantidad de producto 
+  chartData:any=[];
+  chartColors:any =[
+  {
+    backgroundColor: []
+  }
+  ];
+
+  chartLegend = true;
+  chartPlugins = [];
+
   public sucursalProductoModelGetId=[];
   public token;
   public buscar;
@@ -42,8 +61,12 @@ export class SucursalProductoComponent implements OnInit {
           this.validation=true;
           this.sucursalProductoModelGetId =response.ProductosSucursal;
         }
+        this.sucursalProductoModelGetId.forEach(elemento=>{
+          this.chartLabel.push(elemento.nombreProducto);
+          this.chartData.push(elemento.vendido);
+          this.chartColors[0].backgroundColor.push(`#${Math.floor(Math.random()*16777215).toString(16)}`)   
+        })
         console.log(response.ProductosSucursal);
-
       },
       (error)=>{
         console.log(<any>error);
