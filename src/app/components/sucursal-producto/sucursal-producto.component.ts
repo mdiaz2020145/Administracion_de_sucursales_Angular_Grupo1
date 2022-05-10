@@ -53,6 +53,7 @@ export class SucursalProductoComponent implements OnInit {
   }
 
   getSucursalId(idSucursal){
+    this.sucursalProductoModelGetId = []
     this._sucursalProducto.obtenerProductoSucursal(idSucursal,this.token).subscribe(
       (response)=>{
         if(response.empresa==0){
@@ -61,11 +62,7 @@ export class SucursalProductoComponent implements OnInit {
           this.validation=true;
           this.sucursalProductoModelGetId =response.ProductosSucursal;
         }
-        this.sucursalProductoModelGetId.forEach(elemento=>{
-          this.chartLabel.push(elemento.nombreProducto);
-          this.chartData.push(elemento.vendido);
-          this.chartColors[0].backgroundColor.push(`#${Math.floor(Math.random()*16777215).toString(16)}`)   
-        })
+        this.actualizarGrafica(this.sucursalProductoModelGetId);
         console.log(response.ProductosSucursal);
       },
       (error)=>{
@@ -99,6 +96,7 @@ export class SucursalProductoComponent implements OnInit {
     this._sucursalService.ventaProductoSucursal(this.productoGetNombre,this.token).subscribe(
       (response)=>{
           this.getSucursalId(this.productoGetNombre.idSucursal);
+          
           console.log(this.productoGetNombre)
       },
       (error)=>{
@@ -107,10 +105,16 @@ export class SucursalProductoComponent implements OnInit {
     )
   }
 
-
-  getProductoStockMayor(){
-    
+  actualizarGrafica(datos){
+    this.chartData = [];
+    this.chartLabel = []
+    console.log(this.chartData);
+    //this.sucursalProductoModelGetId = []
+    datos.forEach(elemento=>{
+      this.chartLabel.push(elemento.nombreProducto);
+      this.chartData.push(elemento.vendido);
+      this.chartColors[0].backgroundColor.push(`#${Math.floor(Math.random()*16777215).toString(16)}`)   
+    })
   }
-
 
 }
