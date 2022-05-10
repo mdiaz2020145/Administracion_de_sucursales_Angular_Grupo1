@@ -123,4 +123,34 @@ public validation: Boolean=true;
     )
   }
 
+  getProductosStockMayor(){
+    this._servicesProducto.obtenerProductoStockMayor(this.token).subscribe(
+      (response)=>{
+        if(response.empresa==0){
+          this.validation=false;
+        }else{
+          this.validation=true;
+          this.empresaProductoModelGet =response.Cantidad;
+        }
+        console.log(response)
+      },
+      (error)=>{ console.log(<any>error)}
+    )
+  }
+
+  getProductosStockMenor(){
+    this._servicesProducto.obtenerProductoStockMenor(this.token).subscribe(
+      (response)=>{
+        if(response.empresa==0){
+          this.validation=false;
+        }else{
+          this.validation=true;
+          this.empresaProductoModelGet =response.Cantidad;
+        }
+        console.log(response)
+      },
+      (error)=>{ console.log(<any>error)}
+    )
+  }
+
 }

@@ -108,4 +108,9 @@ export class SucursalProductoComponent implements OnInit {
   }
 
 
+  getProductoStockMayor(){
+    
+  }
+
+
 }

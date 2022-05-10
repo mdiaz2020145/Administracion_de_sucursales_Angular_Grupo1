@@ -13,6 +13,11 @@
       </div>
   </div>
 
+  <div class="container mt-4 ml-3 btn-group" role="group" aria-label="Basic example">
+    <button (click)="getProductosStockMayor()"class="btn btn-primary "type="button" >Ordenar stock mayor a menor</button>
+    <button (click)="getProductosStockMenor()"class="btn btn-primary "type="button" >Ordenar stock menor a mayor</button>
+  </div>
+
 <!--Boton-->
 <div class="container mt-4 ml-3">
   <button class="btn btn-primary "type="button" data-bs-toggle="modal" data-bs-target="#agregar">Agregar productos</button>

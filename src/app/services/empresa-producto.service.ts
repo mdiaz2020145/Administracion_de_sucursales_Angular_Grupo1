@@ -48,4 +48,15 @@ export class ServicesProductos {
     let headersToken=this.headersVariable.set('Authorization', token)
     return this._http.put(this.url + '/editarProductos/' + modeloProducto._id, parametros, { headers: headersToken });
   }
+
+
+  obtenerProductoStockMayor(token):Observable<any>{
+    let headersToken=this.headersVariable.set('Authorization', token)
+    return this._http.get(this.url + '/obtenerProductoStockMayorMenor',{ headers: headersToken })
+  }
+
+  obtenerProductoStockMenor(token):Observable<any>{
+    let headersToken=this.headersVariable.set('Authorization', token)
+    return this._http.get(this.url + '/obtenerProductoStockMenorMayor',{ headers: headersToken})
+  }
 }
